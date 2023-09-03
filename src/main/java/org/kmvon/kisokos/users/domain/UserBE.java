@@ -1,13 +1,11 @@
 package org.kmvon.kisokos.users.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.kmvon.kisokos.commons.BaseEntity;
+import org.kmvon.kisokos.roles.domain.RoleBE;
 
 import java.time.OffsetDateTime;
 
@@ -23,9 +21,16 @@ public final class UserBE extends BaseEntity {
     @Column(name = "last_login_date")
     private OffsetDateTime lastLoginDate;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleBE role;
+
     @Column(name = "password")
     private String password;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "last_name")
+    private String lastName;
 }
